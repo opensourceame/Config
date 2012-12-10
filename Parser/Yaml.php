@@ -6,43 +6,43 @@ class Yaml extends Parser
 {
 	public function parse($yaml)
 	{
-
-		echo "FJKDLFJLK";
 		// first check if we have been passed a file
 
-		if (is_readable($yaml)) {
+		if (file_exists($yaml) and is_readable($yaml)) {
 			return $this->parseFile($yaml);
 		}
+
+		// not a file, parse the text
 
 		return $this->parseText($yaml);
 	}
 
-	public function parseFile($configFile)
+	public function parseFile($filename)
 	{
-
 		if (function_exists('yaml_parse_file'))  {
 
-			$yaml = yaml_parse_file($configFile);
+			$yaml = yaml_parse_file($filename);
 
 		} else {
 
-			$yaml = \Spyc::YAMLLoad($configFile);
+			$yaml = \Spyc::YAMLLoad($filename);
 		}
 
-		if (! is_array($yaml))
+		if (! is_array($yaml)) {
+
 			return false;
+		}
 
-		$this->parent->registerFileRead($configFile, 'yaml');
+		$this->parent->registerFileRead($filename, 'yaml');
 
-		return $this->parent->parseArray($yaml);
-
+		return $this->setFromArray($yaml);
 	}
 
 	public function parseText($text)
 	{
 		$yaml = yaml_parse($text);
 
-		print_r($yaml);
+		return $this->setFromArray($yaml);
 	}
 
 }

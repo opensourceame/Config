@@ -10,4 +10,9 @@ class Parser
 	{
 		$this->parent = $parent;
 	}
+
+	protected function setFromArray($data) {
+
+		return $this->parent->setFromArray($data);
+	}
 }

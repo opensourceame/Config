@@ -1,0 +1,5 @@
+lets:
+  parse:
+    a:
+      yaml: file
+
