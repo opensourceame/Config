@@ -15,6 +15,6 @@ Formats include:
 
 Config, once parsed, is represented in a namespaced fashion like so:
 
-server:db:host => localhost
-server:db:db   => my_database
+* server:db:host => localhost
+* server:db:db   => my_database
 
