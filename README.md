@@ -18,3 +18,10 @@ Config, once parsed, is represented in a namespaced fashion like so:
 * server:db:host => localhost
 * server:db:db   => my_database
 
+Thus to get the host name for the database server you would:
+
+$config->get('server:db:host')
+
+and, of course, there's an equivalent setter. You can also get multiple options using a wildcard:
+
+$config->get('server:db:*') // returns an array of db settings
